@@ -10,7 +10,10 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "covid_population.csv",
+				"fileName": {
+					"value": "@concat('covid_population_',formatDateTime(utcNow(),'MMddyyyy'),'.csv')",
+					"type": "Expression"
+				},
 				"fileSystem": "raw"
 			},
 			"columnDelimiter": ",",

@@ -5,7 +5,14 @@
 			{
 				"name": "Copy Covid Data",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Validar existencia archivo",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -205,6 +212,20 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "Validar existencia archivo",
+				"type": "Validation",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "ds_covid_population_raw_bs",
+						"type": "DatasetReference"
+					},
+					"timeout": "00:00:30",
+					"sleep": 10
+				}
 			}
 		],
 		"annotations": []
