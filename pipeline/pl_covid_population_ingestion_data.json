@@ -68,7 +68,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@equals(activity('Get Metadata1').output.columnCount,20)",
+						"value": "@equals(activity('Get Metadata1').output.columnCount,12)",
 						"type": "Expression"
 					},
 					"ifFalseActivities": [
@@ -295,6 +295,38 @@
 									"type": "DatasetReference"
 								}
 							]
+						},
+						{
+							"name": "Borrar",
+							"type": "Delete",
+							"dependsOn": [
+								{
+									"activity": "Covid Data_copy_True",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"dataset": {
+									"referenceName": "ds_covid_population_raw_bs",
+									"type": "DatasetReference"
+								},
+								"enableLogging": false,
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								}
+							}
 						}
 					]
 				}
