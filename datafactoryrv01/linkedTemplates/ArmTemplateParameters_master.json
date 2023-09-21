@@ -1,0 +1,24 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "datafactoryrv01"
+		},
+		"ls_blob_covidbs_connectionString": {
+			"value": ""
+		},
+		"ls_dls_coviddl_accountKey": {
+			"value": ""
+		},
+		"ls_dls_coviddl_properties_typeProperties_url": {
+			"value": "https://covidrdl01rv.dfs.core.windows.net/"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
