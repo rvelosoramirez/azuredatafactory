@@ -7,6 +7,10 @@
 			"metadata": "Nombre de instancia de Data Factory",
 			"defaultValue": "datafactoryrv01"
 		},
+		"BlobMovies_connectionString": {
+			"type": "secureString",
+			"metadata": "Cadena protegida para \"connectionString\"de \"BlobMovies\""
+		},
 		"ls_blob_covidbs_connectionString": {
 			"type": "secureString",
 			"metadata": "Cadena protegida para \"connectionString\"de \"ls_blob_covidbs\""
@@ -45,6 +49,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"BlobMovies_connectionString": {
+						"value": "[parameters('BlobMovies_connectionString')]"
 					},
 					"ls_blob_covidbs_connectionString": {
 						"value": "[parameters('ls_blob_covidbs_connectionString')]"

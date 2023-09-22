@@ -5,6 +5,9 @@
 		"factoryName": {
 			"value": "datafactoryrv01"
 		},
+		"BlobMovies_connectionString": {
+			"value": ""
+		},
 		"ls_blob_covidbs_connectionString": {
 			"value": ""
 		},
