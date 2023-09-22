@@ -19,11 +19,21 @@
 						"type": "DatasetReference"
 					},
 					"name": "MoviesClean"
+				},
+				{
+					"dataset": {
+						"referenceName": "output_movies_raw",
+						"type": "DatasetReference"
+					},
+					"name": "MoviesbyYear"
 				}
 			],
 			"transformations": [
 				{
 					"name": "YearExtraction"
+				},
+				{
+					"name": "MoviesCount"
 				}
 			],
 			"scriptLines": [
@@ -37,12 +47,20 @@
 				"     ignoreNoFilesFound: false) ~> Movies",
 				"Movies derive({Año} = toInteger(trim(right(title,6), '()')),",
 				"          Titulo = toString(left(title,length(title)-6))) ~> YearExtraction",
+				"YearExtraction aggregate(groupBy({Año}),",
+				"     MoviesCount = count()) ~> MoviesCount",
 				"YearExtraction sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     partitionFileNames:['movies-clean.csv'],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     partitionBy('hash', 1)) ~> MoviesClean"
+				"     partitionBy('hash', 1)) ~> MoviesClean",
+				"MoviesCount sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['MoviesbyYear.csv'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> MoviesbyYear"
 			]
 		}
 	}
